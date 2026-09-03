@@ -19,5 +19,6 @@ Não precisa de build, servidor ou instalação. Abrir o arquivo no navegador j�
 
 ```
 index.html    site completo, autossuficiente
+preview.jpg   imagem que aparece quando o link é compartilhado no WhatsApp
 README.md     este arquivo
 ```
