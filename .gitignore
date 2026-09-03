@@ -1,0 +1,7 @@
+# Copias de seguranca do index.html — ficam so no computador, nunca no repositorio.
+# O index.html tem 3,8 MB; cada backup dobraria o tamanho do repositorio a toa.
+*.bak
+index.html.seguro
+
+# Pasta que o navegador de teste (Playwright) cria ao rodar
+.playwright-mcp/
