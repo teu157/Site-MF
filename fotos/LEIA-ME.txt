@@ -1,0 +1,15 @@
+Fotos dos produtos do site.
+
+NAO edite nada aqui a mao. Estas duas pastas sao preenchidas pelo
+preparar-fotos.py, que le as fotos originais e gera as duas versoes:
+
+  miniaturas/   500 px  (~20 KB)  usadas na grade de produtos
+  grandes/     1400 px  (~65 KB)  usadas ao tocar para ampliar
+
+COMO ADICIONAR FOTOS
+  1. copie as fotos do celular para a pasta  fotos-originais/
+  2. rode no terminal:   python3 preparar-fotos.py
+  3. as versoes leves aparecem aqui automaticamente
+
+A pasta fotos-originais/ nao vai para a internet (esta no .gitignore):
+as fotos pesadas do celular ficam so no seu computador.

@@ -1,7 +1,11 @@
 # Copias de seguranca do index.html — ficam so no computador, nunca no repositorio.
 # O index.html tem 3,8 MB; cada backup dobraria o tamanho do repositorio a toa.
 *.bak
-index.html.seguro
+index.html.seguro*
 
 # Pasta que o navegador de teste (Playwright) cria ao rodar
 .playwright-mcp/
+
+# Fotos como saem do celular: 3 a 8 MB cada. O preparar-fotos.py le daqui e
+# grava as versoes leves em fotos/, que essas sim vao para o site.
+fotos-originais/
