@@ -9,3 +9,8 @@ index.html.seguro*
 # Fotos como saem do celular: 3 a 8 MB cada. O preparar-fotos.py le daqui e
 # grava as versoes leves em fotos/, que essas sim vao para o site.
 fotos-originais/
+
+# Midias originais extraidas do bundle antigo na migracao de 2026. Ficam so no
+# computador: sao as mesmas fotos que agora vivem em fotos/, mas pesadas e sem
+# uso. Os scripts de _build/ ficam versionados como registro de como foi feito.
+_build/bruto/

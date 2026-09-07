@@ -1,0 +1,16 @@
+Scripts da migracao de setembro de 2026.
+
+O site era um index.html unico de 3,9 MB com todas as fotos, o video e as fontes
+embutidos em base64, montado no navegador por React. Levava 7,9 s para aparecer
+no 4G. Estes tres scripts o transformaram no site estatico de hoje, que aparece
+em 0,3 s:
+
+  1-extrair.py    tira as 32 midias e o template de dentro do bundle
+  2-imagens.js    reduz e converte as imagens para WebP (usa o Chromium)
+  3-converter.py  transforma o template do bundler em HTML comum
+
+NAO E PRECISO RODAR NADA DISSO DE NOVO. Ficam aqui so como registro: se um dia
+alguem precisar entender de onde veio cada arquivo, esta escrito aqui.
+
+Para adicionar fotos novas ao site, o script certo e o preparar-fotos.py na
+pasta de cima.
