@@ -174,6 +174,15 @@
 
 /* O menu e fixo (69px): sem isto o titulo da secao para debaixo dele. */
 section[id]{scroll-margin-top:88px}
+/* Faixa de prova: altura fixa e largura livre, entao cada foto entra inteira,
+   sem corte. As fotos vem de story e nem todas tem a mesma proporcao. */
+.mf-prova{position:relative;flex:0 0 auto;height:clamp(360px,52vh,440px);border-radius:4px;overflow:hidden;background:#101512;scroll-snap-align:start;margin:0}
+.mf-prova img{display:block;height:100%;width:auto}
+/* A rolagem lateral fica presa nesta faixa: a pagina nunca anda de lado. */
+#mfProvaFaixa{scrollbar-width:thin;scrollbar-color:#2e5e49 transparent}
+#mfProvaFaixa::-webkit-scrollbar{height:6px}
+#mfProvaFaixa::-webkit-scrollbar-thumb{background:#2e5e49;border-radius:999px}
+#mfProvaFaixa:focus-visible{outline:2px solid #4fb98d;outline-offset:4px}
 /* Alvo de toque de 44px sem mudar o tamanho do texto: cresce so a area. */
 .mf-link{min-height:44px}
 .mf-vira-btn{display:inline-flex;align-items:center;min-height:44px}
@@ -299,8 +308,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <script type="application/json" id="mfProdutos">
 [
   {"tipo": "tenis", "nome": "Nike Air Zoom Alphafly 3", "texto": "Preto integral, placa rígida e Air Zoom aparecendo no antepé.", "foto": "nike-air-zoom-alphafly-3", "destaque": true, "alt": "Nike Air Zoom Alphafly 3 preto em perfil sobre um degrau de madeira", "razao": "16/10", "etiqueta": "É o do vídeo lá em cima"},
-  {"tipo": "tenis", "nome": "Nike Air VaporMax Plus", "texto": "Degradê azul e laranja, com a bolha de ar correndo por toda a sola.", "foto": "nike-air-vapormax-plus", "destaque": true, "alt": "Nike Air VaporMax Plus em degradê azul e laranja segurado na mão", "razao": "4/3", "recorte": "50% 44%"},
-  {"tipo": "tenis", "nome": "Nike Air VaporMax 2020 Flyknit", "texto": "Tramado cinza e preto, sem cadarço, com a sola transparente inteira à mostra.", "foto": "nike-air-vapormax-2020-flyknit", "alt": "Nike Air VaporMax 2020 Flyknit cinza e preto segurado na mão", "recorte": "50% 44%"},
+  {"tipo": "tenis", "nome": "Nike Air VaporMax Plus", "texto": "Degradê azul e laranja, com a bolha de ar correndo por toda a sola.", "foto": "nike-air-vapormax-plus", "destaque": true, "tamanhos": "37 ao 43", "alt": "Nike Air VaporMax Plus em degradê azul e laranja segurado na mão", "razao": "4/3", "recorte": "50% 44%"},
+  {"tipo": "tenis", "nome": "Nike Air VaporMax 2020 Flyknit", "texto": "Tramado cinza e preto, sem cadarço, com a sola transparente inteira à mostra.", "foto": "nike-air-vapormax-2020-flyknit", "tamanhos": "37 ao 43", "alt": "Nike Air VaporMax 2020 Flyknit cinza e preto segurado na mão", "recorte": "50% 44%"},
   {"tipo": "tenis", "nome": "Nike Dunk Low azul", "texto": "Azul royal com azul claro e sola combinando. O par inteiro, os dois pés.", "foto": "nike-dunk-low-azul", "alt": "Par de Nike Dunk Low azul royal e azul claro"},
   {"tipo": "tenis", "nome": "Nike Dunk Low creme", "texto": "Creme com bege, couro liso, a mais discreta do lote.", "foto": "nike-dunk-low-creme", "alt": "Par de Nike Dunk Low creme com bege"},
   {"tipo": "camisa", "nome": "Brasil amarela", "texto": "Gola verde escura e escudo bordado.", "foto": "brasil-amarela", "costas": "brasil-amarela-costas", "alt": "Camisa do Brasil amarela, frente", "altCostas": "Camisa do Brasil amarela, costas"},
@@ -389,10 +398,50 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   </div>
 </section>
 
+<!-- A lista das fotos de prova. Mesma ideia da lista de produtos: para
+     acrescentar uma foto, prepare ela com o preparar-fotos.py e ponha um bloco
+     aqui. Se a lista ficar vazia, a secao inteira some sozinha do site.
+
+     ATENCAO com foto de etiqueta: nome, CPF, endereco e CEP do cliente nao
+     podem aparecer, e o codigo 2D e o QR guardam esses mesmos dados dentro.
+     Na duvida, foto da caixa fechada resolve e nao tem o que tapar.
+
+     A foto "prova-estoque-brasil" tem uma promocao com prazo queimada na
+     imagem ("primeiros 10 clientes, R$ 169,90"). TROCAR quando a promocao
+     acabar: promessa de preco que ficou no ar depois do fim vira propaganda
+     enganosa. -->
+<script type="application/json" id="mfProva">
+[
+  {"foto": "prova-cliente-tenis-rosa", "legenda": "@josedaconceicaomeira",
+   "alt": "Cliente usando o par de adidas rosa que comprou na MF Sportswear"},
+  {"foto": "prova-cliente-camisa-brasil", "legenda": "@luiz.o.antero",
+   "alt": "Cliente vestindo a camisa do Brasil amarela comprada na MF Sportswear"},
+  {"foto": "prova-envio-valadares", "legenda": "Enviado · Governador Valadares/MG",
+   "alt": "Caixa com um par de adidas e a etiqueta de postagem dos Correios"},
+  {"foto": "prova-envio-adidas-vermelho", "legenda": "Postado",
+   "alt": "Caixa aberta com o adidas vermelho e a etiqueta de postagem"},
+  {"foto": "prova-estoque-brasil", "legenda": "Estoque",
+   "alt": "Camisas do Brasil embaladas e etiquetadas, empilhadas no estoque"},
+  {"foto": "prova-estoque-clubes", "legenda": "Pedidos separados",
+   "alt": "Camisas do Atlético Mineiro, do Cruzeiro e do Brasil embaladas"}
+]
+</script>
+
+<section id="prova" style="padding:clamp(56px,8vw,104px) clamp(16px,4vw,40px) clamp(40px,6vw,72px);max-width:1440px;margin:0 auto">
+  <div class="mf-reveal" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:1px solid rgba(238,242,238,.12);padding-bottom:26px">
+    <div>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#4fb98d">05 / Já saiu daqui</span>
+      <h2 style="margin-top:14px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(38px,7vw,92px);line-height:.92;letter-spacing:.01em;text-transform:uppercase;color:#eef2ee">Peça que sai,<br>cliente que manda foto</h2>
+    </div>
+    <p style="max-width:34ch;font-size:15px;line-height:1.6;color:#93a099;font-weight:300">Encomenda saindo e cliente com a peça no corpo. Sem produção. Os dados de quem comprou saem da foto antes de ela entrar aqui.</p>
+  </div>
+  <div id="mfProvaFaixa" role="region" aria-label="Fotos de encomendas enviadas e de clientes" tabindex="0" style="display:flex;gap:clamp(12px,1.6vw,20px);margin-top:clamp(32px,5vw,56px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding-bottom:14px"></div>
+</section>
+
 <section id="duvidas" style="padding:clamp(56px,8vw,104px) clamp(16px,4vw,40px);max-width:1440px;margin:0 auto">
   <div class="mf-reveal" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:1px solid rgba(238,242,238,.12);padding-bottom:26px">
     <div>
-      <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#4fb98d">05 / Dúvidas</span>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#4fb98d">06 / Dúvidas</span>
       <h2 style="margin-top:14px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(38px,7vw,92px);line-height:.92;letter-spacing:.01em;text-transform:uppercase;color:#eef2ee">As perguntas que<br>sempre chegam</h2>
     </div>
     <p style="max-width:30ch;font-size:15px;line-height:1.6;color:#93a099;font-weight:300">Resposta direta, sem enrolação.</p>
@@ -428,7 +477,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <section id="falar" style="position:relative;overflow:hidden;padding:clamp(72px,12vw,160px) clamp(16px,4vw,40px);background:#4fb98d;color:#06110c">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 78% 20%,rgba(255,255,255,.28),transparent 70%)"></div>
   <div class="mf-reveal" style="position:relative;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(24px,4vw,44px)">
-    <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(6,17,12,.62)">06 / Chamada final</span>
+    <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(6,17,12,.62)">07 / Chamada final</span>
     <h2 style="font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(54px,14vw,200px);line-height:.84;letter-spacing:.01em;text-transform:uppercase">Escolheu?<br>Me chama.</h2>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(18px,3vw,36px);border-top:1px solid rgba(6,17,12,.22);padding-top:clamp(20px,3vw,32px)">
       <a href="https://wa.me/5538997506508?text=Oi%21%20Vim%20pelo%20site%20da%20MF%20Sportswear%20e%20quero%20saber%20mais." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;min-height:58px;padding:0 14px 0 8px;border-radius:999px;background:#06110c;color:#eef2ee;font-size:16px;font-weight:600;transition:transform .3s ease" class="mf-mola mf-hv-claro">
@@ -471,6 +520,7 @@ class MFSite {
        instante em que rodam, e cartao que ainda nao existe nasceria sem
        animacao nenhuma */
     this.montarProdutos();
+    this.montarProva();
     this.armarVideo();
     this.armarRevelacoes();
     this.armarNav();
@@ -1114,17 +1164,10 @@ class MFSite {
     const ZAP = '5538997506508';
     const LIMITE = 12;  /* cartoes visiveis na grade antes do "Ver mais" */
 
-    const esc = (s) => String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-
-    /* Uma foto embutida no bundle ja virou endereco blob: antes desta lista ser
-       lida, e serve para as duas versoes. Um nome solto ("nike-alphafly-3")
-       vira os dois caminhos da pasta fotos/. Assim as fotos antigas embutidas e
-       as novas em arquivo convivem na mesma lista, sem gambiarra. */
-    const pronta = (f) => /^(blob:|data:|https?:|\.|\/)/.test(f);
-    const pequena = (f) => pronta(f) ? f : 'fotos/miniaturas/' + f + '.webp';
-    const grande = (f) => pronta(f) ? f : 'fotos/grandes/' + f + '.webp';
+    /* atalhos para os metodos da classe, que a faixa de prova usa tambem */
+    const esc = (s) => this.esc(s);
+    const pequena = (f) => this.fotoPequena(f);
+    const grande = (f) => this.fotoGrande(f);
 
     const zap = (p) => {
       const msg = p.mensagem || (p.tipo === 'camisa'
@@ -1151,7 +1194,9 @@ class MFSite {
     const emDestaque = (p, n) =>
       '<article style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));'
       + 'gap:clamp(18px,3vw,44px);align-items:center">'
-      + bloco(p, grande, p.razao || '4/3')
+      /* camisa com foto das costas vira em vez de ampliar: dois sentidos para o
+         mesmo gesto confunde, e as costas valem mais que o zoom aqui */
+      + (p.costas ? viraCamisa(p, grande, p.razao || '3/4') : bloco(p, grande, p.razao || '4/3'))
       + '<div class="mf-reveal" style="display:flex;flex-wrap:wrap;align-items:flex-end;'
       + 'justify-content:space-between;gap:20px"><div>'
       + '<span style="font-family:\'Space Mono\',monospace;font-size:11px;letter-spacing:.18em;'
@@ -1160,7 +1205,8 @@ class MFSite {
       + 'font-size:clamp(28px,3.6vw,46px);line-height:1;letter-spacing:.01em;'
       + 'text-transform:uppercase">' + esc(p.nome) + '</h3>'
       + '<p style="margin-top:10px;max-width:52ch;font-size:15px;line-height:1.6;'
-      + 'color:#93a099;font-weight:300">' + esc(p.texto) + '</p></div>'
+      + 'color:#93a099;font-weight:300">' + esc(p.texto) + '</p>'
+      + numeracao(p) + '</div>'
       + '<a class="mf-botao mf-mola" href="' + esc(zap(p)) + '" target="_blank" rel="noopener">'
       + 'Consultar no WhatsApp <span style="color:#4fb98d">&#8594;</span></a>'
       + '</div></article>';
@@ -1175,35 +1221,50 @@ class MFSite {
       + 'text-transform:uppercase">' + esc(p.nome) + '</h3>'
       + '<p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#93a099;'
       + 'font-weight:300">' + esc(p.texto) + '</p>'
+      + numeracao(p)
       + '<a class="mf-link mf-mola" href="' + esc(zap(p)) + '" target="_blank" rel="noopener"'
       + ' style="margin-top:2px">Consultar <span>&#8594;</span></a>'
       + '</article>';
 
-    /* camisa: com foto das costas o cartao vira ao toque; sem ela vira cartao
-       normal e o botao "Ver as costas" nem aparece — ninguem percebe que falta */
-    const naGradeCamisa = (p) => {
-      const frente = '<img src="' + esc(pequena(p.foto)) + '" alt="'
+    /* O cartao que vira frente/costas. Escrito uma vez so porque a grade e o
+       destaque usam o mesmo: antes so a grade virava, e marcar uma camisa como
+       "destaque": true fazia ela perder a foto das costas — justamente o que o
+       titulo da secao promete. */
+    const viraCamisa = (p, versao, razao) => {
+      const frente = '<img src="' + esc(versao(p.foto)) + '" alt="'
         + esc(p.alt || p.nome) + '" loading="lazy">';
-      const miolo = p.costas
-        ? '<div class="mf-vira" style="position:relative;aspect-ratio:3/4;perspective:1400px;'
-          + 'background:#101512;cursor:pointer">'
-          + '<div style="position:absolute;inset:0;transform-style:preserve-3d;'
-          + 'transform:rotateY(var(--mf-flip,0deg));transition:transform .9s cubic-bezier(.16,1,.3,1)">'
-          + '<div class="mf-face">' + frente + '</div>'
-          + '<div class="mf-face" style="transform:rotateY(180deg)"><img src="'
-          + esc(pequena(p.costas)) + '" alt="' + esc(p.altCostas || (p.nome + ', costas'))
-          + '" loading="lazy"></div></div>'
-          + '<button type="button" class="mf-vira-btn mf-pill" aria-pressed="false"'
-          + ' style="left:12px;bottom:12px;z-index:4;cursor:pointer">Ver as costas &#8634;</button>'
-          + '</div>'
-        : '<div class="mf-foto" style="aspect-ratio:3/4">' + frente + '</div>';
+      if (!p.costas) {
+        return '<div class="mf-foto" style="aspect-ratio:' + esc(razao) + '">' + frente + '</div>';
+      }
+      return '<div class="mf-vira" style="position:relative;aspect-ratio:' + esc(razao)
+        + ';perspective:1400px;background:#101512;cursor:pointer">'
+        + '<div style="position:absolute;inset:0;transform-style:preserve-3d;'
+        + 'transform:rotateY(var(--mf-flip,0deg));transition:transform .9s cubic-bezier(.16,1,.3,1)">'
+        + '<div class="mf-face">' + frente + '</div>'
+        + '<div class="mf-face" style="transform:rotateY(180deg)"><img src="'
+        + esc(versao(p.costas)) + '" alt="' + esc(p.altCostas || (p.nome + ', costas'))
+        + '" loading="lazy"></div></div>'
+        + '<button type="button" class="mf-vira-btn mf-pill" aria-pressed="false"'
+        + ' style="left:12px;bottom:12px;z-index:4;cursor:pointer">Ver as costas &#8634;</button>'
+        + '</div>';
+    };
+
+    /* numeracao disponivel, quando a lista informa: responde no site uma pergunta
+       que hoje custa uma ida ao WhatsApp so para perguntar */
+    const numeracao = (p) => !p.tamanhos ? ''
+      : '<p style="margin-top:9px;font-family:\'Space Mono\',monospace;font-size:11px;'
+        + 'letter-spacing:.14em;text-transform:uppercase;color:#4fb98d">'
+        + (p.tipo === 'camisa' ? 'Tamanhos ' : 'Numeração ') + esc(p.tamanhos) + '</p>';
+
+    const naGradeCamisa = (p) => {
       return '<article class="mf-cartao mf-luz" data-luz="rgba(79,185,141,.16)">'
-        + miolo
+        + viraCamisa(p, pequena, '3/4')
         + '<div style="padding:16px 18px 20px">'
         + '<h3 style="font-family:\'Bebas Neue\',sans-serif;font-weight:400;font-size:24px;'
         + 'letter-spacing:.02em;text-transform:uppercase">' + esc(p.nome) + '</h3>'
         + '<p style="margin-top:7px;font-size:13.5px;line-height:1.55;color:#93a099;'
         + 'font-weight:300">' + esc(p.texto) + '</p>'
+        + numeracao(p)
         + '<a class="mf-link mf-mola" href="' + esc(zap(p)) + '" target="_blank" rel="noopener"'
         + ' style="margin-top:2px">Consultar <span>&#8594;</span></a>'
         + '</div></article>';
@@ -1254,6 +1315,54 @@ class MFSite {
 
     preencher('tenis', 'mfTenis', 'tênis');
     preencher('camisa', 'mfCamisas', 'camisas');
+  }
+
+  /* Escapa texto que vem da lista antes de virar HTML: nome com & ou aspas nao
+     pode quebrar a pagina. */
+  esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* Caminho da foto, num lugar so. Um apelido solto ("nike-air-max-90") vira o
+     caminho das duas versoes; um endereco que ja veio pronto passa direto.
+     A grade de produtos e a faixa de prova chamam daqui, entao nao existe
+     chance de uma apontar para uma pasta e a outra para outra. */
+  fotoPronta(f) { return /^(blob:|data:|https?:|\.|\/)/.test(f); }
+  fotoPequena(f) { return this.fotoPronta(f) ? f : 'fotos/miniaturas/' + f + '.webp'; }
+  fotoGrande(f) { return this.fotoPronta(f) ? f : 'fotos/grandes/' + f + '.webp'; }
+
+  /* A faixa "Ja saiu daqui": encomendas postadas e clientes com a peca.
+     Mesma ideia da vitrine — a lista manda, o HTML e montado a partir dela.
+     Lista vazia ou com erro de digitacao esconde a secao inteira, em vez de
+     deixar um titulo orfao com um vao branco embaixo. */
+  montarProva() {
+    const secao = document.getElementById('prova');
+    const faixa = document.getElementById('mfProvaFaixa');
+    const ilha = document.getElementById('mfProva');
+    if (!secao || !faixa || !ilha) return;
+
+    const esconder = () => { secao.style.display = 'none'; };
+    let lista;
+    try {
+      lista = JSON.parse(ilha.textContent);
+    } catch (erro) {
+      console.error('[MF] a lista de fotos de prova tem erro de digitacao:', erro);
+      return esconder();
+    }
+    const boas = Array.isArray(lista) ? lista.filter((p) => p && p.foto) : [];
+    if (!boas.length) return esconder();
+
+    faixa.innerHTML = boas.map((p) =>
+      '<figure class="mf-prova">'
+      + '<img src="' + this.esc(this.fotoPequena(p.foto)) + '" alt="'
+      + this.esc(p.alt || '') + '" loading="lazy" decoding="async">'
+      + (p.legenda
+          ? '<figcaption class="mf-pill" style="left:12px;bottom:12px">'
+            + this.esc(p.legenda) + '</figcaption>'
+          : '')
+      + '</figure>').join('');
   }
 
 }

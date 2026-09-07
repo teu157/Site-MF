@@ -47,12 +47,35 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   O campo `foto` é só o apelido: o site monta sozinho
   `fotos/miniaturas/nike-air-max-90.webp` e `fotos/grandes/nike-air-max-90.webp`.
   `"tipo"` é `tenis` ou `camisa`. Campos opcionais: `destaque` (formato grande),
-  `costas` (apelido da foto das costas, só camisa), `razao`, `recorte`, `etiqueta`.
+  `costas` (apelido da foto das costas, só camisa), `tamanhos` (ex.: `"37 ao 43"`),
+  `razao`, `recorte`, `etiqueta`.
 
-- **Textos, preços, seções, CSS** — direto no `index.html`, que agora abre em
-  qualquer editor de texto.
+- **Fotos de prova** — a lista `id="mfProva"`, logo acima da seção `#prova`
+  ("Já saiu daqui"): encomendas postadas e clientes com a peça. Mesmo formato,
+  com `foto`, `alt` e `legenda`. **Lista vazia esconde a seção inteira**, então dá
+  para tirar tudo sem quebrar o layout.
+
+- **Textos, seções, CSS** — direto no `index.html`, que agora abre em qualquer
+  editor de texto.
 
 - **Fotos novas** — `preparar-fotos.py` (ver `fotos/LEIA-ME.txt`).
+
+### Duas coisas para não esquecer nas fotos de prova
+
+1. **Dado de cliente não vai para o site.** Nome, CPF, endereço e CEP de quem
+   comprou não podem aparecer numa foto de etiqueta — é dado pessoal de terceiro
+   num site público, e serve de material para golpe contra o próprio cliente.
+   Cuidado com o que não é texto: o **código 2D e o QR da declaração guardam os
+   mesmos dados dentro**, e a **chave de acesso da DACE** (o número de 44 dígitos)
+   permite consultar a declaração e ler tudo de novo. Tapar com retângulo opaco,
+   nunca desfoque — texto pequeno borrado às vezes volta a ser legível com
+   realce de contraste. Foto da caixa fechada evita o problema todo.
+   As fotos que já estão no site foram tratadas pelo `_build/4-tapar.js`.
+
+2. **`prova-estoque-brasil` tem prazo.** Essa foto traz "Os primeiros 10 clientes,
+   R$ 199,90 → R$ 169,90" queimado na imagem. Quando a promoção acabar, **trocar a
+   foto**: promessa de preço que fica no ar depois do fim é propaganda enganosa
+   (CDC, art. 30 e 37). É a única foto do site com preço.
 
 ## Como abrir para testar
 
