@@ -60,6 +60,23 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
 
 - **Fotos novas** — `preparar-fotos.py` (ver `fotos/LEIA-ME.txt`).
 
+- **Preço** — aparece na tela em **três lugares**, todos escritos à mão no `index.html`:
+  o parágrafo da seção `#tenis` (R$ 249), o da seção `#camisas` (R$ 169) e a primeira
+  pergunta do `#duvidas` (os dois). Existe um **quarto**, invisível: o bloco
+  `<script type="application/ld+json">` do `FAQPage`, no topo do arquivo, que repete a
+  resposta palavra por palavra para o Google. **Mudou o preço, mudar nos quatro.** Os
+  que citam valor estão marcados com `<!-- PRECO: ... -->`; procurar por `R$` acha todos.
+
+  O preço fica de propósito **fora** do título, do topo, da faixa rolante e do cartão do
+  WhatsApp: o site vende acesso e curadoria, não preço baixo. Contra Shopee e revenda de
+  Instagram sempre vai existir alguém mais barato, então preço como manchete é briga
+  perdida. Ele responde a dúvida ao lado do produto, e só.
+
+- **Política de troca** — está escrita na terceira pergunta do `#duvidas` (e repetida no
+  `FAQPage`): 7 dias de arrependimento, que é obrigação legal em venda a distância
+  (CDC, art. 49), **mais** troca de numeração com o frete da troca por conta do cliente.
+  Se essa regra mudar na prática, mudar o texto junto — política escrita no site vale.
+
 ### Duas coisas para não esquecer nas fotos de prova
 
 1. **Dado de cliente não vai para o site.** Nome, CPF, endereço e CEP de quem
@@ -72,10 +89,12 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
    realce de contraste. Foto da caixa fechada evita o problema todo.
    As fotos que já estão no site foram tratadas pelo `_build/4-tapar.js`.
 
-2. **`prova-estoque-brasil` tem prazo.** Essa foto traz "Os primeiros 10 clientes,
-   R$ 199,90 → R$ 169,90" queimado na imagem. Quando a promoção acabar, **trocar a
-   foto**: promessa de preço que fica no ar depois do fim é propaganda enganosa
-   (CDC, art. 30 e 37). É a única foto do site com preço.
+2. **Preço dentro de foto não entra no site.** A foto `prova-estoque-brasil` foi
+   tirada da lista `mfProva` em setembro de 2026: ela traz "Os primeiros 10 clientes,
+   R$ 199,90 → R$ 169,90" queimado na imagem, e como R$ 169 virou o preço normal da
+   camisa aquilo anunciava uma escassez que não existe mais. O arquivo continua em
+   `fotos/` caso um dia seja tratado. Regra geral: preço queimado em imagem não pode
+   ser atualizado, então vira propaganda enganosa sozinho (CDC, art. 30 e 37).
 
 ## Como abrir para testar
 

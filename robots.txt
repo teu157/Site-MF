@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://teu157.github.io/Site-MF/sitemap.xml
+Sitemap: https://site-mf-xi.vercel.app/sitemap.xml
