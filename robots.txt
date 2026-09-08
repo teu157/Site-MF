@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://teu157.github.io/Site-MF/sitemap.xml
