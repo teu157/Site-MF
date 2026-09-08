@@ -89,14 +89,22 @@ navegadores bloqueiam o vídeo e as fontes em `file://`.
 
 ## Publicação
 
-GitHub Pages, repositório **público** `teu157/Site-MF`, branch `main`, pasta raiz.
-Em 02/09/2026 o Pages ainda não estava ativado. Os passos para ligar estão no
-`README.md`.
+**Vercel**, ligado ao repositório **público** `teu157/Site-MF`. Cada push publica
+sozinho em um ou dois minutos:
+
+- push na **`main`** → atualiza o site de verdade
+- push em **qualquer outra branch** → cria um endereço só daquela versão, para
+  conferir antes de valer
+
+O `.vercelignore` mantém a pasta `_build/` fora do que vai para o ar.
+
+O GitHub Pages ficou de lado: dava no mesmo, mas com endereço mais comprido e uma
+tela de configuração difícil de achar no celular.
 
 ## Regras de trabalho
 
 1. **Nunca fazer commit nem push sozinho.** O dono decide quando gravar e publicar.
-   Com o Pages ativado, um push na `main` põe a mudança no ar em um ou dois minutos.
+   Com o Vercel ligado, um push na `main` põe a mudança no ar em um ou dois minutos.
 
 2. **O site é uma pasta, não um arquivo.** O `index.html` sozinho não funciona mais —
    ele depende de `fotos/`, `fontes/` e `video/`. Para mandar o site para alguém,

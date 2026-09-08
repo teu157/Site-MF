@@ -16,12 +16,17 @@ python3 -m http.server 8000
 
 e abrir `http://localhost:8000`.
 
-## Publicar de graça no GitHub Pages
+## Publicação
 
-1. Neste repositório, vá em **Settings → Pages**
-2. Em *Source*, escolha **Deploy from a branch**
-3. Branch: **main**, pasta: **/ (root)** → **Save**
-4. Em um ou dois minutos o site fica no ar em `https://<seu-usuario>.github.io/<nome-do-repo>/`
+O site é publicado de graça pelo **Vercel**, ligado a este repositório. Não é
+preciso fazer nada a cada mudança: todo push publica sozinho em um ou dois minutos.
+
+- push na **`main`** → atualiza o site de verdade
+- push em **qualquer outra branch** → cria um endereço só daquela versão, útil
+  para conferir antes de valer
+
+Se um dia precisar refazer a ligação: em `vercel.com/new`, importar o repositório
+`Site-MF`. Não tem nada para configurar — é HTML puro, sem build.
 
 ## Estrutura
 
