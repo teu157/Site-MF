@@ -85,9 +85,9 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
 
   **Foto de fornecedor não entra.** A seção de tênis promete "cada foto é do par real em
   estoque" e o topo diz "sem fotos de catálogo": foto de fornecedor ali é propaganda
-  enganosa (CDC, art. 37). Em setembro de 2026 saíram por isso as fotos do Dunk azul
-  royal (o produto saiu junto), do Dunk creme e do VaporMax 2020 (trocadas pelas do dono,
-  com a placa MF ao fundo).
+  enganosa (CDC, art. 37). Em setembro de 2026 saíram por isso o Dunk azul royal e o
+  VaporMax Plus, mesmo em estoque (voltam quando houver foto do dono), e as fotos do Dunk
+  creme e do VaporMax 2020 foram trocadas pelas do dono, com a placa MF ao fundo.
 
 - **Preço** — aparece na tela em **três lugares**, todos escritos à mão no `index.html`:
   o parágrafo da seção `#tenis` (R$ 249), o da seção `#camisas` (R$ 169) e a primeira
@@ -206,7 +206,7 @@ tela de configuração difícil de achar no celular.
    Instagram, ou seja, de telefone.
 
 6. **Não quebrar os links de WhatsApp.** São 4 links `wa.me` fixos mais 1 por produto
-   (13 em set/2026) — o único caminho de venda. O número mora num lugar só (a constante
+   (12 no fim de set/2026) — o único caminho de venda. O número mora num lugar só (a constante
    `ZAP` no JavaScript), então produto novo não consegue apontar para o telefone errado.
    Depois de qualquer mexida, conferir que todos apontam para (38) 99750-6508 e que
    todos contêm "pelo site".
