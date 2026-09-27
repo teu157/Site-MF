@@ -14,3 +14,7 @@ alguem precisar entender de onde veio cada arquivo, esta escrito aqui.
 
 Para adicionar fotos novas ao site, o script certo e o preparar-fotos.py na
 pasta de cima.
+
+A EXCECAO, que e para usar: fotos-chromium.js faz o mesmo que o
+preparar-fotos.py sem precisar de ffmpeg, para a atualizacao semanal feita numa
+sessao do Claude Code na nuvem. Como usar esta escrito no comeco dele.

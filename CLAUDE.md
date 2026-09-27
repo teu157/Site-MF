@@ -10,6 +10,22 @@ empurrar o cliente para o WhatsApp **(38) 99750-6508** ou para o Instagram
 O dono é leigo em programação (ver o arquivo global `~/.claude/CLAUDE.md` para como
 explicar as coisas).
 
+### Papel do site (decidido em 27/set/2026)
+
+O site **não traz cliente**: ele ajuda a **fechar** quem já chegou pelo Instagram e está
+desconfiado. O gargalo da loja é alcance (quanta gente nova vê o produto), e isso se
+resolve no conteúdo do Instagram, não aqui. Os números do negócio ficam fora deste
+arquivo: o repositório é público (regra 8).
+Por isso, **nada de redesenho, seção nova, SEO, domínio próprio ou anúncio** até a
+revisão abaixo. O link da bio continua indo direto para o WhatsApp; o site é o segundo
+link e o que o dono manda na conversa quando o cliente hesita.
+
+**Revisão em 26/nov/2026.** Somar as conversas com "pelo site" no WhatsApp (ver
+Medição), a anotação de origem de cada venda e o Vercel Analytics, se já ligado:
+- 2 ou mais vendas pelo site em 60 dias → manter e atualizar; aí discutir domínio próprio;
+- 1 venda → mais 30 dias de teste;
+- zero → o site vira página fixa de confiança e o catálogo fica só nos stories.
+
 ## Como o site está montado
 
 Site estático comum: HTML, CSS e JavaScript, sem build, sem dependências, sem
@@ -25,7 +41,8 @@ fotos/
 video/hero.mp4     876 KB — o vídeo do topo, carregado depois da primeira tela
 preview.jpg                 o cartão que aparece ao colar o link no WhatsApp
 robots.txt  sitemap.xml  .nojekyll
-_build/                     scripts da migração de 2026 (não afetam o site)
+_build/                     scripts da migração de 2026 e o fotos-chromium.js
+                            (nada daqui vai para o ar)
 ```
 
 O site pesa 2,7 MB no total, mas a **primeira tela custa ~130 KB** e aparece em
@@ -58,7 +75,19 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
 - **Textos, seções, CSS** — direto no `index.html`, que agora abre em qualquer
   editor de texto.
 
-- **Fotos novas** — `preparar-fotos.py` (ver `fotos/LEIA-ME.txt`).
+- **Fotos novas** — no computador de casa, `preparar-fotos.py` (ver `fotos/LEIA-ME.txt`).
+  Numa sessão na nuvem, onde não há ffmpeg, `node _build/fotos-chromium.js`: mesmo
+  resultado, pelo Chromium. **Foto em pé de celular precisa de `--recorte`**: a grade e a
+  janela de ampliar só mostram uma janela da foto (4/3 no tênis, 3/4 na camisa), então o
+  arquivo é cortado nessa janela — sem isso a grande sai com ~450 KB, dois terços
+  invisíveis. Ajustar o recorte olhando o cartão no navegador; recortado, o produto fica
+  sem o campo `recorte`.
+
+  **Foto de fornecedor não entra.** A seção de tênis promete "cada foto é do par real em
+  estoque" e o topo diz "sem fotos de catálogo": foto de fornecedor ali é propaganda
+  enganosa (CDC, art. 37). Em setembro de 2026 saíram por isso as fotos do Dunk azul
+  royal (o produto saiu junto), do Dunk creme e do VaporMax 2020 (trocadas pelas do dono,
+  com a placa MF ao fundo).
 
 - **Preço** — aparece na tela em **três lugares**, todos escritos à mão no `index.html`:
   o parágrafo da seção `#tenis` (R$ 249), o da seção `#camisas` (R$ 169) e a primeira
@@ -76,6 +105,10 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   `FAQPage`): 7 dias de arrependimento, que é obrigação legal em venda a distância
   (CDC, art. 49), **mais** troca de numeração com o frete da troca por conta do cliente.
   Se essa regra mudar na prática, mudar o texto junto — política escrita no site vale.
+
+- **Entrega** — em Sete Lagoas é em mãos. Está em três lugares: a última pergunta do
+  `#duvidas`, a mesma resposta no `FAQPage` (palavra por palavra) e o primeiro selo da
+  seção "Quem vende". Se a entrega local parar, tirar dos três.
 
 ### Duas coisas para não esquecer nas fotos de prova
 
@@ -95,6 +128,38 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
    camisa aquilo anunciava uma escassez que não existe mais. O arquivo continua em
    `fotos/` caso um dia seja tratado. Regra geral: preço queimado em imagem não pode
    ser atualizado, então vira propaganda enganosa sozinho (CDC, art. 30 e 37).
+
+## Atualização da semana
+
+O dono escolheu manter a promessa da seção de tênis ("Cada foto é do par real em
+estoque. Quando esgota, sai do site."), então a lista `mfProdutos` precisa bater com o
+estoque. A rotina, numa sessão do Claude Code (dá para fazer pelo celular):
+
+1. O dono manda as fotos dos pares novos (no cenário da placa MF) e diz o que esgotou.
+2. Copiar a foto escolhida de cada par — **a de lado**, que é a que cabe no cartão 4/3 —
+   para `fotos-originais/` com o nome do produto (`Nike SB Dunk Low Pro marinho.jpg`) e
+   rodar `node _build/fotos-chromium.js --recorte "4/3 70%" "Nike SB Dunk Low Pro marinho.jpg"`.
+3. Tirar da lista o que esgotou e pôr o que entrou. O nome vem da etiqueta da língua do
+   tênis, não do que o fornecedor chamou.
+4. Conferir no navegador (regras 4, 5 e 6) e mandar as telas para o dono.
+5. Push só na branch de teste; `main` só com ordem do dono (regra 1).
+
+**Regra das 2 semanas.** Se passar duas semanas sem atualização, trocar o texto da seção
+de tênis para não prometer estoque em tempo real — por exemplo: "Cada foto é de um par
+que passou pelas minhas mãos. O estoque muda toda semana: o que tem hoje eu confirmo na
+hora no WhatsApp." Promessa descumprida é pior que promessa nenhuma.
+
+## Medição
+
+- **Toda mensagem de WhatsApp que sai do site contém "pelo site"** (os 4 botões gerais e
+  a função `zap()` dos produtos). Buscar "pelo site" no WhatsApp conta as conversas que o
+  site trouxe. Não tirar essa frase.
+- **Vercel Web Analytics:** não estava ligado em 27/set/2026. Ligar em Vercel → projeto
+  `site-mf` → Analytics → Enable e **só depois** colar no `index.html`, antes do
+  `</body>`, o trecho que o painel mostrar — colado antes, o script dá erro no console.
+- Links com etiqueta, para o Analytics separar a origem: bio do Instagram →
+  `https://site-mf-xi.vercel.app/?utm_source=instagram`; link mandado no WhatsApp →
+  `https://site-mf-xi.vercel.app/?utm_source=whatsapp`.
 
 ## Como abrir para testar
 
@@ -140,12 +205,14 @@ tela de configuração difícil de achar no celular.
 5. **Testar também em largura de celular.** A maior parte do tráfego vem do link do
    Instagram, ou seja, de telefone.
 
-6. **Não quebrar os links de WhatsApp.** São 13 links `wa.me` — o único caminho de
-   venda. O número mora num lugar só (a constante `ZAP` no JavaScript), então produto
-   novo não consegue apontar para o telefone errado. Depois de qualquer mexida,
-   conferir que continuam apontando para (38) 99750-6508.
+6. **Não quebrar os links de WhatsApp.** São 4 links `wa.me` fixos mais 1 por produto
+   (13 em set/2026) — o único caminho de venda. O número mora num lugar só (a constante
+   `ZAP` no JavaScript), então produto novo não consegue apontar para o telefone errado.
+   Depois de qualquer mexida, conferir que todos apontam para (38) 99750-6508 e que
+   todos contêm "pelo site".
 
-7. **Cuidar do peso.** Toda foto nova passa pelo `preparar-fotos.py` antes de entrar.
+7. **Cuidar do peso.** Toda foto nova passa pelo `preparar-fotos.py` (ou pelo
+   `_build/fotos-chromium.js`, na nuvem) antes de entrar.
    Foto direto do celular tem 3 a 8 MB e sozinha desfaz o ganho de desempenho.
 
 8. **O repositório é público.** Nunca colocar senha, chave de acesso ou dado sigiloso
