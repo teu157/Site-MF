@@ -26,6 +26,9 @@ Medição), a anotação de origem de cada venda e o Vercel Analytics, se já li
 - 1 venda → mais 30 dias de teste;
 - zero → o site vira página fixa de confiança e o catálogo fica só nos stories.
 
+**Exceção decidida pelo dono em 8/out/2026:** entrou o bloco de modelos **por encomenda** na seção
+de tênis (ver "Modelos por encomenda" abaixo). Foi pedido dele, não iniciativa da sessão.
+
 ## Como o site está montado
 
 Site estático comum: HTML, CSS e JavaScript, sem build, sem dependências, sem
@@ -67,6 +70,15 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   `costas` (apelido da foto das costas, só camisa), `tamanhos` (ex.: `"37 ao 43"`),
   `razao`, `recorte`, `etiqueta`.
 
+- **Modelos por encomenda** — a lista `<script type="application/json" id="mfEncomenda">`, logo
+  depois da `mfProdutos`. São modelos que o dono **não tem em mãos**, com **foto do fornecedor**.
+  Mesmo formato de produto. Aparecem só depois que o cliente toca em "Ver modelos por encomenda",
+  em cartão **quadrado** (o de estoque é deitado), com a etiqueta **"Encomenda"** posta pelo código
+  (não depende de ninguém lembrar) e o botão "Encomendar". Antes do toque nenhuma dessas fotos é
+  baixada. O apelido da foto **sempre começa com `fornecedor-`**. Quando o par chega e ganha foto
+  com a placa MF, ele **sai da `mfEncomenda` e entra na `mfProdutos`**, com foto nova sem o prefixo.
+  Funciona igual para camisa (`"tipo": "camisa"` cai na seção de camisas).
+
 - **Fotos de prova** — a lista `id="mfProva"`, logo acima da seção `#prova`
   ("Já saiu daqui"): encomendas postadas e clientes com a peça. Mesmo formato,
   com `foto`, `alt` e `legenda`. **Lista vazia esconde a seção inteira**, então dá
@@ -83,9 +95,11 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   invisíveis. Ajustar o recorte olhando o cartão no navegador; recortado, o produto fica
   sem o campo `recorte`.
 
-  **Foto de fornecedor não entra.** A seção de tênis promete "cada foto é do par real em
-  estoque" e o topo diz "sem fotos de catálogo": foto de fornecedor ali é propaganda
-  enganosa (CDC, art. 37). Em setembro de 2026 saíram por isso o Dunk azul royal e o
+  **Foto de fornecedor só entra na `mfEncomenda`.** A seção de tênis promete "cada foto de
+  pronta-entrega é do par real em estoque": foto de fornecedor na `mfProdutos` seria propaganda
+  enganosa (CDC, art. 37). Por isso o site **se recusa** a mostrar na grade de estoque qualquer
+  foto com apelido `fornecedor-` e acusa no console (F12). Na encomenda, recortar em quadrado:
+  `--recorte "1/1 45%"`, ajustando o número até o tênis caber inteiro. Em setembro de 2026 saíram por isso o Dunk azul royal e o
   VaporMax Plus, mesmo em estoque (voltam quando houver foto do dono), e as fotos do Dunk
   creme e do VaporMax 2020 foram trocadas pelas do dono, com a placa MF ao fundo.
 
@@ -105,6 +119,13 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   `FAQPage`): 7 dias de arrependimento, que é obrigação legal em venda a distância
   (CDC, art. 49), **mais** troca de numeração com o frete da troca por conta do cliente.
   Se essa regra mudar na prática, mudar o texto junto — política escrita no site vale.
+
+- **Foto ou vídeo antes de pagar** — na pronta-entrega o cliente recebe **vídeo** da peça; na
+  encomenda, **fotos do par** (o dono não consegue garantir vídeo do fornecedor). Os textos foram
+  escritos assim em out/2026: subtítulo do topo, faixa rolante ("Foto ou vídeo da peça…"), passo 2
+  do "Como funciona", a pergunta "Como tenho certeza de que a compra é segura?" (e o `FAQPage`) e a
+  descrição do site, que aparece **4 vezes** no topo do arquivo (Google, `og:`, Twitter e o `Store`).
+  Se isso mudar na prática, mudar em todos.
 
 - **Entrega** — em Sete Lagoas é em mãos. Está em três lugares: a última pergunta do
   `#duvidas`, a mesma resposta no `FAQPage` (palavra por palavra) e o primeiro selo da
@@ -140,7 +161,10 @@ estoque. A rotina, numa sessão do Claude Code (dá para fazer pelo celular):
    para `fotos-originais/` com o nome do produto (`Nike SB Dunk Low Pro marinho.jpg`) e
    rodar `node _build/fotos-chromium.js --recorte "4/3 70%" "Nike SB Dunk Low Pro marinho.jpg"`.
 3. Tirar da lista o que esgotou e pôr o que entrou. O nome vem da etiqueta da língua do
-   tênis, não do que o fornecedor chamou.
+   tênis, não do que o fornecedor chamou. Se o par que chegou estava na `mfEncomenda`, tirar
+   de lá.
+   Modelo novo **por encomenda** (foto do fornecedor): arquivo `fornecedor-<modelo>-<cor>.jpg`,
+   `--recorte "1/1 45%"`, e vai para a `mfEncomenda`, nunca para a `mfProdutos`.
 4. Conferir no navegador (regras 4, 5 e 6) e mandar as telas para o dono.
 5. Push só na branch de teste; `main` só com ordem do dono (regra 1).
 
@@ -205,8 +229,8 @@ tela de configuração difícil de achar no celular.
 5. **Testar também em largura de celular.** A maior parte do tráfego vem do link do
    Instagram, ou seja, de telefone.
 
-6. **Não quebrar os links de WhatsApp.** São 4 links `wa.me` fixos mais 1 por produto
-   (12 no fim de set/2026) — o único caminho de venda. O número mora num lugar só (a constante
+6. **Não quebrar os links de WhatsApp.** São 4 links `wa.me` fixos, mais 1 por produto, mais 1
+   por modelo de encomenda (31 em out/2026) — o único caminho de venda. O número mora num lugar só (a constante
    `ZAP` no JavaScript), então produto novo não consegue apontar para o telefone errado.
    Depois de qualquer mexida, conferir que todos apontam para (38) 99750-6508 e que
    todos contêm "pelo site".
