@@ -115,7 +115,7 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   creme e do VaporMax 2020 foram trocadas pelas do dono, com a placa MF ao fundo.
 
 - **Preço** — aparece na tela em **três lugares**, todos escritos à mão no `index.html`:
-  o parágrafo da seção `#tenis` (R$ 249), o da seção `#camisas` (R$ 169) e a primeira
+  o parágrafo da seção `#tenis` (R$ 249), o da seção `#camisas` (R$ 189, desde 22/out/2026; antes era R$ 169) e a primeira
   pergunta do `#duvidas` (os dois). Existe um **quarto**, invisível: o bloco
   `<script type="application/ld+json">` do `FAQPage`, no topo do arquivo, que repete a
   resposta palavra por palavra para o Google. **Mudou o preço, mudar nos quatro.** Os
@@ -127,7 +127,7 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   perdida. Ele responde a dúvida ao lado do produto, e só.
 
 - **Condições comerciais** — seção `#condicoes`, marcada com `<!-- PRECO: ... -->`. Confirmadas pelo dono
-  em 22/out/2026: **kit de 2 camisas versão torcedor por R$ 320** (só torcedor — escrito assim de
+  em 22/out/2026: **kit de 2 camisas versão torcedor por R$ 320** (avulsa sai R$ 189) (só torcedor — escrito assim de
   propósito, porque oferta publicada obriga, CDC art. 30); **frete grátis para todo o Brasil a partir
   de 3 peças**; **5% na primeira compra**, sem acumular com o kit. O frete grátis também aparece em
   duas perguntas do `#duvidas` ("Como eu pago?" e "Vocês entregam onde?") e no `FAQPage`, palavra por
