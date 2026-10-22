@@ -29,6 +29,9 @@ Medição), a anotação de origem de cada venda e o Vercel Analytics, se já li
 **Exceção decidida pelo dono em 8/out/2026:** entrou o "Ver mais N modelos" com fotos de
 fornecedor na seção de tênis (ver "Mais modelos" abaixo). Foi pedido dele, não iniciativa da sessão.
 
+**Exceção decidida pelo dono em 22/out/2026:** entrou a seção `#condicoes` (kit, frete grátis,
+desconto), entre `#camisas` e `#como`. Pedida pela sessão de marketing do Cowork e confirmada por ele.
+
 ## Como o site está montado
 
 Site estático comum: HTML, CSS e JavaScript, sem build, sem dependências, sem
@@ -123,6 +126,13 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   Instagram sempre vai existir alguém mais barato, então preço como manchete é briga
   perdida. Ele responde a dúvida ao lado do produto, e só.
 
+- **Condições comerciais** — seção `#condicoes`, marcada com `<!-- PRECO: ... -->`. Confirmadas pelo dono
+  em 22/out/2026: **kit de 2 camisas versão torcedor por R$ 320** (só torcedor — escrito assim de
+  propósito, porque oferta publicada obriga, CDC art. 30); **frete grátis para todo o Brasil a partir
+  de 3 peças**; **5% na primeira compra**, sem acumular com o kit. O frete grátis também aparece em
+  duas perguntas do `#duvidas` ("Como eu pago?" e "Vocês entregam onde?") e no `FAQPage`, palavra por
+  palavra. **Mudou a condição, mudar nos quatro lugares** (seção, duas perguntas, `FAQPage`).
+
 - **Política de troca** — está escrita na terceira pergunta do `#duvidas` (e repetida no
   `FAQPage`): 7 dias de arrependimento, que é obrigação legal em venda a distância
   (CDC, art. 49), **mais** troca de numeração com o frete da troca por conta do cliente.
@@ -178,6 +188,16 @@ pelo celular):
 
 ## Medição
 
+- **GA4 (`G-FBGXJ9QC3P`) e Pixel da Meta (`1633511708323078`)** — entraram em 22/out/2026, pela sessão de
+  marketing do Cowork, logo depois do `<head>`. **Não remover.** Um listener no `document` conta todo
+  clique em link `wa.me` como `generate_lead` no GA4 e `Contact` no Pixel, inclusive os links criados
+  pelo JavaScript da vitrine, então botão de WhatsApp novo é medido sozinho.
+- **`<meta charset="utf-8">` fica como primeira linha do `<head>`, antes desses scripts.** O navegador
+  só procura essa linha nos primeiros 1024 bytes; os scripts a empurraram para o byte 1636. No Vercel
+  não quebra (o servidor manda `charset=utf-8`), mas a pasta aberta fora dele mostraria "TÃªnis".
+- **Pendência:** o Pixel grava cookie de publicidade sem aviso ao visitante; a ANPD trata esse tipo de
+  cookie como dependente de consentimento. Pôr um aviso curto de privacidade antes de investir em anúncio.
+
 - **Toda mensagem de WhatsApp que sai do site contém "pelo site"** (os 4 botões gerais e
   a função `zap()` dos produtos). Buscar "pelo site" no WhatsApp conta as conversas que o
   site trouxe. Não tirar essa frase.
@@ -232,8 +252,8 @@ tela de configuração difícil de achar no celular.
 5. **Testar também em largura de celular.** A maior parte do tráfego vem do link do
    Instagram, ou seja, de telefone.
 
-6. **Não quebrar os links de WhatsApp.** São 4 links `wa.me` fixos, mais 1 por produto, mais 1
-   por modelo de encomenda (31 em out/2026) — o único caminho de venda. O número mora num lugar só (a constante
+6. **Não quebrar os links de WhatsApp.** São 5 links `wa.me` fixos (o 5º é o "Montar meu kit"), mais
+   1 por produto, mais 1 por modelo de encomenda (32 em out/2026) — o único caminho de venda. O número mora num lugar só (a constante
    `ZAP` no JavaScript), então produto novo não consegue apontar para o telefone errado.
    Depois de qualquer mexida, conferir que todos apontam para (38) 99750-6508 e que
    todos contêm "pelo site".
