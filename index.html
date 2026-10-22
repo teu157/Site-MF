@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google Analytics 4 (MF Sportswear) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBGXJ9QC3P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FBGXJ9QC3P');
+
+  /* Conta cada clique em qualquer link do WhatsApp (inclusive os criados por JS
+     na vitrine) como uma conversao "generate_lead". Delegado no document para
+     nao depender de onde o botao foi desenhado. */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="wa.me"]');
+    if (!a) return;
+    var texto = '';
+    try { texto = decodeURIComponent((a.href.split('text=')[1] || '')).slice(0, 100); } catch (err) {}
+    gtag('event', 'generate_lead', { method: 'whatsapp', mensagem: texto });
+    if (typeof fbq === 'function') fbq('track', 'Contact');
+  }, true);
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MF Sportswear | Tênis e camisas importados, direto no WhatsApp</title>
