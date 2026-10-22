@@ -32,6 +32,13 @@ fornecedor na seção de tênis (ver "Mais modelos" abaixo). Foi pedido dele, n�
 **Exceção decidida pelo dono em 22/out/2026:** entrou a seção `#condicoes` (kit, frete grátis,
 desconto), entre `#camisas` e `#como`. Pedida pela sessão de marketing do Cowork e confirmada por ele.
 
+**Decisões do dono em 22/out/2026 (textos):**
+- Título do topo **"Importados premium de verdade."**, mantido por ele mesmo depois do aviso de que "de verdade"
+  pode ser lido como "original". Por isso a resposta "É original?" da FAQ (que diz que não vende como peça de
+  loja oficial) **não pode sair nem ser suavizada** enquanto esse título existir.
+- "Quem vende" não diz mais "pessoalmente" nem "sem bots" (o WhatsApp tem agente de IA). O topo ("atendimento
+  direto comigo") e a FAQ ("Você fala diretamente comigo no WhatsApp") ficaram como estavam, por escolha dele.
+
 ## Como o site está montado
 
 Site estático comum: HTML, CSS e JavaScript, sem build, sem dependências, sem
@@ -39,6 +46,8 @@ servidor. O navegador abre e pronto.
 
 ```
 index.html          77 KB   o site inteiro: HTML, CSS e JavaScript
+privacidade.html            política de privacidade (link no rodapé)
+trocas.html                 trocas e devoluções (link no rodapé)
 fontes/             10 arquivos .woff2  (o navegador só baixa os 4 que usa)
 fotos/
   miniaturas/       500 px — as fotos da grade de produtos
@@ -133,8 +142,20 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   duas perguntas do `#duvidas` ("Como eu pago?" e "Vocês entregam onde?") e no `FAQPage`, palavra por
   palavra. **Mudou a condição, mudar nos quatro lugares** (seção, duas perguntas, `FAQPage`).
 
+- **Páginas de privacidade e de trocas** — `privacidade.html` e `trocas.html`, na raiz, ligadas no rodapé.
+  Mesmo visual do site, com um `<style>` próprio e pequeno (só as 3 fontes latinas), sem JavaScript e **sem
+  GA4/Pixel**. Cada uma tem um botão de WhatsApp com "pelo site". Estão no `sitemap.xml`.
+  - **Trocas** diz **só** o que o site já afirma (troca de numeração garantida, medida do pé antes de fechar,
+    frete da troca de numeração por conta do cliente, 7 dias para desistir, CDC art. 49). O dono preferiu não
+    incluir a devolução integral do arrependimento (art. 49) nem os 90 dias para defeito (art. 26) — valem
+    por lei mesmo sem estar escritos. O frete por conta do cliente fica preso à troca de numeração, **nunca**
+    ao arrependimento.
+  - **Privacidade** descreve GA4, Pixel, Vercel e o WhatsApp. **Mudou a medição (tirou, trocou ou somou
+    ferramenta), mudar esta página junto** e trocar a data de "Última atualização". Não tem CNPJ, endereço,
+    sobrenome, e-mail, prazos de retenção nem base legal: o site não tem esses dados.
+
 - **Política de troca** — está escrita na terceira pergunta do `#duvidas` (e repetida no
-  `FAQPage`): 7 dias de arrependimento, que é obrigação legal em venda a distância
+  `FAQPage` e na `trocas.html`): 7 dias de arrependimento, que é obrigação legal em venda a distância
   (CDC, art. 49), **mais** troca de numeração com o frete da troca por conta do cliente.
   Se essa regra mudar na prática, mudar o texto junto — política escrita no site vale.
 
@@ -196,7 +217,9 @@ pelo celular):
   só procura essa linha nos primeiros 1024 bytes; os scripts a empurraram para o byte 1636. No Vercel
   não quebra (o servidor manda `charset=utf-8`), mas a pasta aberta fora dele mostraria "TÃªnis".
 - **Pendência:** o Pixel grava cookie de publicidade sem aviso ao visitante; a ANPD trata esse tipo de
-  cookie como dependente de consentimento. Pôr um aviso curto de privacidade antes de investir em anúncio.
+  cookie como dependente de consentimento. A `privacidade.html` (out/2026) **informa**, mas não pede
+  consentimento: isso exige um aviso que segure o Pixel até o "aceito", o que mexe no código do Pixel e
+  precisa de ordem do dono.
 
 - **Toda mensagem de WhatsApp que sai do site contém "pelo site"** (os 4 botões gerais e
   a função `zap()` dos produtos). Buscar "pelo site" no WhatsApp conta as conversas que o
@@ -253,7 +276,8 @@ tela de configuração difícil de achar no celular.
    Instagram, ou seja, de telefone.
 
 6. **Não quebrar os links de WhatsApp.** São 5 links `wa.me` fixos (o 5º é o "Montar meu kit"), mais
-   1 por produto, mais 1 por modelo de encomenda (32 em out/2026) — o único caminho de venda. O número mora num lugar só (a constante
+   1 por produto, mais 1 por modelo de encomenda (32 em out/2026; as páginas de privacidade e trocas têm
+   os seus próprios, também com "pelo site") — o único caminho de venda. O número mora num lugar só (a constante
    `ZAP` no JavaScript), então produto novo não consegue apontar para o telefone errado.
    Depois de qualquer mexida, conferir que todos apontam para (38) 99750-6508 e que
    todos contêm "pelo site".
