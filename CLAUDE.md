@@ -122,6 +122,21 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   promessa, com disponibilidade confirmada no WhatsApp, é prática comum de loja. Em setembro de 2026 saíram por isso o Dunk azul royal e o
   VaporMax Plus, mesmo em estoque (voltam quando houver foto do dono), e as fotos do Dunk
   creme e do VaporMax 2020 foram trocadas pelas do dono, com a placa MF ao fundo.
+  O VaporMax Plus **voltou em nov/2026** (azul e laranja, R$ 259), agora com foto do dono; o Dunk azul royal
+  continua fora.
+
+  **Tênis têm uma foto só por cartão** (toque amplia). A "galeria" de duas fotos só existe nas camisas
+  (frente/costas, `viraCamisa`). Em nov/2026 o dono pediu "fotos na galeria" para 4 tênis novos
+  (Yeezy Zebra, Yeezy Ash Stone, Yeezy Foam Runner, VaporMax Plus); entraram com uma foto cada. Galeria
+  para tênis seria código novo, e o cartão que vira perderia a ampliação.
+
+  **Etiqueta da marca na foto (adidas "ORIGINALS" + código de barras):** o dono proibiu "original" e
+  "oficial" nos textos do site, e a FAQ ("É original?") diz que não vende como peça de loja oficial. Uma
+  etiqueta legível na foto principal passa a mensagem contrária. Preferir foto **sem** a etiqueta pendurada;
+  se só houver foto com etiqueta, a escolha é do dono, por escrito. Tapar a etiqueta no arquivo não serve
+  (ela cobre parte do tênis). **Decisão do dono (14/nov/2026):** o Yeezy Boost 350 V2 Ash Stone usa a foto
+  com etiqueta (`yeezy-350-v2-ash-stone-3`), escolhida por ele depois do aviso; a alternativa era a foto da sola, que
+  vendia mal. Se ele mandar foto de lado sem a etiqueta, trocar.
 
 - **Preço** — aparece na tela em **três lugares**, todos escritos à mão no `index.html`:
   o parágrafo da seção `#tenis` (R$ 249), o da seção `#camisas` (R$ 189, desde 22/out/2026; antes era R$ 169) e a primeira
