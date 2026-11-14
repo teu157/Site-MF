@@ -142,6 +142,15 @@ menos de meio segundo no 4G. O resto entra conforme o cliente rola.
   duas perguntas do `#duvidas` ("Como eu pago?" e "Vocês entregam onde?") e no `FAQPage`, palavra por
   palavra. **Mudou a condição, mudar nos quatro lugares** (seção, duas perguntas, `FAQPage`).
 
+- **Preço em cada cartão** — campo `"preco"` (número em reais: `299`, `549.9`) em cada produto da `mfProdutos`
+  e da `mfEncomenda`. A função `precoLinha()` monta a linha **exata** "R$ 299 · Pix com 5% de desconto no
+  fechamento · ou 12x no cartão" (centavos só quando existem, com vírgula: "R$ 549,90"). Produto **sem**
+  `preco` não mostra linha: **nunca inventar preço**. O kit de 2 camisas não tem Pix. Os valores vêm do
+  catálogo do WhatsApp do dono (14/nov/2026); mudou o catálogo, mudar o `preco` na lista. Nunca escrever
+  "sem juros". "Pix ou cartão parcelado" (FAQ, faixa, "Como funciona") ficou como está, por escolha dele.
+  **Pendência:** "Tênis a partir de R$ 249" (seção de tênis, "Quanto custa?" e `FAQPage`) não corresponde a
+  nenhum tênis (o mais barato é R$ 299). O dono mandou manter em 14/nov; trocar quando ele decidir.
+
 - **Páginas de privacidade e de trocas** — `privacidade.html` e `trocas.html`, na raiz, ligadas no rodapé.
   Mesmo visual do site, com um `<style>` próprio e pequeno (só as 3 fontes latinas), sem JavaScript e **sem
   GA4/Pixel**. Cada uma tem um botão de WhatsApp com "pelo site". Estão no `sitemap.xml`.
