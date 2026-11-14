@@ -345,13 +345,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <script type="application/json" id="mfProdutos">
 [
   {"tipo": "tenis", "nome": "Nike Air Zoom Alphafly 3", "texto": "Total black de alta performance, amortecimento visível no antepé e placa responsiva.", "foto": "nike-air-zoom-alphafly-3", "destaque": true, "tamanhos": "37 ao 43", "alt": "Nike Air Zoom Alphafly 3 preto em perfil sobre um degrau de madeira", "razao": "16/10", "etiqueta": "Modelo do vídeo"},
-  {"tipo": "tenis", "nome": "Nike Air VaporMax 2020 Flyknit", "texto": "Tricô cinza chumbo com pontinhos coloridos, trava de cordão no lugar do cadarço e bolha de ar transparente em toda a extensão.", "foto": "nike-air-vapormax-2020-flyknit", "tamanhos": "37 ao 43", "alt": "Par de Nike Air VaporMax 2020 Flyknit cinza chumbo, de lado, sobre bancada preta espelhada com a placa da MF Sportswear ao fundo"},
-  {"tipo": "tenis", "nome": "Nike SB Dunk Low Pro marinho", "texto": "Camurça azul-marinho com painéis azul claro, swoosh branco e etiqueta Dunk Low Pro na língua.", "foto": "nike-sb-dunk-low-pro-marinho", "tamanhos": "37 ao 43", "alt": "Par de Nike SB Dunk Low Pro azul-marinho e azul claro, de lado, sobre bancada preta espelhada com a placa da MF Sportswear ao fundo"},
-  {"tipo": "tenis", "nome": "Nike SB Dunk Low creme", "texto": "Couro creme com forro bege e swoosh no mesmo tom. Silhueta clássica, a opção mais discreta do catálogo.", "foto": "nike-dunk-low-creme", "tamanhos": "37 ao 43", "alt": "Par de Nike SB Dunk Low creme, de lado, sobre bancada preta espelhada com a placa da MF Sportswear ao fundo"},
-  {"tipo": "camisa", "nome": "Brasil amarela", "texto": "Amarelo tradicional com gola verde escura e escudo bordado.", "foto": "brasil-amarela", "costas": "brasil-amarela-costas", "tamanhos": "P ao GG", "alt": "Camisa do Brasil amarela, frente", "altCostas": "Camisa do Brasil amarela, costas"},
-  {"tipo": "camisa", "nome": "Brasil verde", "texto": "Verde água com grafismo preto e escudo tom sobre tom.", "foto": "brasil-verde", "costas": "brasil-verde-costas", "tamanhos": "P ao GG", "alt": "Camisa do Brasil verde água, frente", "altCostas": "Camisa do Brasil verde água, costas"},
-  {"tipo": "camisa", "nome": "Atlético Mineiro", "texto": "Listras preta e branca com filete dourado.", "foto": "atletico-mineiro", "costas": "atletico-mineiro-costas", "tamanhos": "P ao GG", "alt": "Camisa do Atlético Mineiro listrada, frente", "altCostas": "Camisa do Atlético Mineiro listrada, costas"},
-  {"tipo": "camisa", "nome": "Cruzeiro", "texto": "Azul com o Cruzeiro do Sul em branco e textura tom sobre tom.", "foto": "cruzeiro", "costas": "cruzeiro-costas", "tamanhos": "P ao GG", "alt": "Camisa do Cruzeiro azul, frente", "altCostas": "Camisa do Cruzeiro azul, costas"}
+  {"tipo": "tenis", "nome": "Nike Air VaporMax 2020 Flyknit", "texto": "Tricô cinza chumbo com pontinhos coloridos, trava de cordão no lugar do cadarço e bolha de ar transparente em toda a extensão.", "foto": "nike-air-vapormax-2020-flyknit", "preco": 399, "tamanhos": "37 ao 43", "alt": "Par de Nike Air VaporMax 2020 Flyknit cinza chumbo, de lado, sobre bancada preta espelhada com a placa da MF Sportswear ao fundo"},
+  {"tipo": "tenis", "nome": "Nike SB Dunk Low Pro marinho", "texto": "Camurça azul-marinho com painéis azul claro, swoosh branco e etiqueta Dunk Low Pro na língua.", "foto": "nike-sb-dunk-low-pro-marinho", "preco": 299, "tamanhos": "37 ao 43", "alt": "Par de Nike SB Dunk Low Pro azul-marinho e azul claro, de lado, sobre bancada preta espelhada com a placa da MF Sportswear ao fundo"},
+  {"tipo": "tenis", "nome": "Nike SB Dunk Low creme", "texto": "Couro creme com forro bege e swoosh no mesmo tom. Silhueta clássica, a opção mais discreta do catálogo.", "foto": "nike-dunk-low-creme", "preco": 299, "tamanhos": "37 ao 43", "alt": "Par de Nike SB Dunk Low creme, de lado, sobre bancada preta espelhada com a placa da MF Sportswear ao fundo"},
+  {"tipo": "camisa", "nome": "Brasil amarela", "texto": "Amarelo tradicional com gola verde escura e escudo bordado.", "foto": "brasil-amarela", "preco": 189, "costas": "brasil-amarela-costas", "tamanhos": "P ao GG", "alt": "Camisa do Brasil amarela, frente", "altCostas": "Camisa do Brasil amarela, costas"},
+  {"tipo": "camisa", "nome": "Brasil verde", "texto": "Verde água com grafismo preto e escudo tom sobre tom.", "foto": "brasil-verde", "preco": 189, "costas": "brasil-verde-costas", "tamanhos": "P ao GG", "alt": "Camisa do Brasil verde água, frente", "altCostas": "Camisa do Brasil verde água, costas"},
+  {"tipo": "camisa", "nome": "Atlético Mineiro", "texto": "Listras preta e branca com filete dourado.", "foto": "atletico-mineiro", "preco": 189, "costas": "atletico-mineiro-costas", "tamanhos": "P ao GG", "alt": "Camisa do Atlético Mineiro listrada, frente", "altCostas": "Camisa do Atlético Mineiro listrada, costas"},
+  {"tipo": "camisa", "nome": "Cruzeiro", "texto": "Azul com o Cruzeiro do Sul em branco e textura tom sobre tom.", "foto": "cruzeiro", "preco": 189, "costas": "cruzeiro-costas", "tamanhos": "P ao GG", "alt": "Camisa do Cruzeiro azul, frente", "altCostas": "Camisa do Cruzeiro azul, costas"}
 ]
 </script>
 
@@ -1327,7 +1327,7 @@ class MFSite {
       + 'text-transform:uppercase">' + esc(p.nome) + '</h3>'
       + '<p style="margin-top:10px;max-width:52ch;font-size:15px;line-height:1.6;'
       + 'color:#93a099;font-weight:300">' + esc(p.texto) + '</p>'
-      + numeracao(p) + '</div>'
+      + numeracao(p) + precoPix(p) + '</div>'
       + '<a class="mf-botao mf-mola" href="' + esc(zap(p)) + '" target="_blank" rel="noopener">'
       + 'Consultar disponibilidade <span style="color:#4fb98d">&#8594;</span></a>'
       + '</div></article>';
@@ -1342,7 +1342,7 @@ class MFSite {
       + 'text-transform:uppercase">' + esc(p.nome) + '</h3>'
       + '<p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#93a099;'
       + 'font-weight:300">' + esc(p.texto) + '</p>'
-      + numeracao(p)
+      + numeracao(p) + precoPix(p)
       + '<a class="mf-link mf-mola" href="' + esc(zap(p)) + '" target="_blank" rel="noopener"'
       + ' style="margin-top:2px">Consultar <span>&#8594;</span></a>'
       + '</article>';
@@ -1377,6 +1377,18 @@ class MFSite {
         + 'letter-spacing:.14em;text-transform:uppercase;color:#4fb98d">'
         + (p.tipo === 'camisa' ? 'Tamanhos ' : 'Numeração ') + esc(p.tamanhos) + '</p>';
 
+    /* Pix = preco - 5%. Conta em centavos inteiros: R$ 499 -> 49900 * 0,95 = 47405 -> "474,05".
+       Produto sem "preco" na lista nao mostra nada (continua so com o "Consultar"): preco nunca e
+       inventado. O kit de 2 camisas nao passa por aqui porque nao tem desconto no Pix. */
+    const precoPix = (p) => {
+      if (!(p.preco > 0)) return '';
+      const c = Math.round(p.preco * 95);
+      const valor = Math.floor(c / 100) + ',' + ('0' + (c % 100)).slice(-2);
+      return '<p style="margin-top:9px;font-size:14px;line-height:1.5;color:#eef2ee;font-weight:400">'
+        + '<span style="white-space:nowrap">R$ ' + valor + ' no Pix</span> &middot; '
+        + '<span style="white-space:nowrap">ou 12x no cart\u00e3o</span></p>';
+    };
+
     const naGradeCamisa = (p) => {
       return '<article class="mf-cartao mf-luz" data-luz="rgba(79,185,141,.16)">'
         + viraCamisa(p, pequena, '3/4')
@@ -1385,7 +1397,7 @@ class MFSite {
         + 'letter-spacing:.02em;text-transform:uppercase">' + esc(p.nome) + '</h3>'
         + '<p style="margin-top:7px;font-size:13.5px;line-height:1.55;color:#93a099;'
         + 'font-weight:300">' + esc(p.texto) + '</p>'
-        + numeracao(p)
+        + numeracao(p) + precoPix(p)
         + '<a class="mf-link mf-mola" href="' + esc(zap(p)) + '" target="_blank" rel="noopener"'
         + ' style="margin-top:2px">Consultar <span>&#8594;</span></a>'
         + '</div></article>';
@@ -1401,7 +1413,7 @@ class MFSite {
       + 'text-transform:uppercase">' + esc(p.nome) + '</h3>'
       + '<p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#93a099;'
       + 'font-weight:300">' + esc(p.texto) + '</p>'
-      + numeracao(p)
+      + numeracao(p) + precoPix(p)
       + '<a class="mf-link mf-mola" href="' + esc(zap(p)) + '" target="_blank" rel="noopener"'
       + ' style="margin-top:2px">Consultar <span>&#8594;</span></a>'
       + '</article>';
